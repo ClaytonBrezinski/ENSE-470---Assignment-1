@@ -18,9 +18,10 @@ public class ENSE470Assignment1
      */
     public static void main(String[] args)
     {
+        
         // set this variable to TRUE if you want the program to be able to be invoked from the command line
         boolean userInputted = false;
-        String fileToUse = "hamlet.txt";
+        String fileToUse = "test/hamlet.txt";
         
         Scanner input;
         Scanner userInput = new Scanner(System.in);
@@ -31,9 +32,6 @@ public class ENSE470Assignment1
         }   
             try
             {
-                final String workingDir = System.getProperty("user.dir");
-                System.out.println("Current working directory: " + workingDir);
-                
                 System.out.println(System.getProperty("user.dir"));
                 input = new Scanner(new File(fileToUse));
                 
@@ -46,9 +44,18 @@ public class ENSE470Assignment1
             }
             catch (Exception e)
             {
+                // if statement to prevent unusual breaking at the end of the file
+                if (line == "")
+                {
                 System.out.println("ERROR: File not found.");
                 return;
+                }
             }
+        // once the file has been grabbed, begin the timer.
+        // Begin Timer
+        final long startTime = System.currentTimeMillis();
+            
+            
         // deal with the special characters within the string
         line = line.replaceAll("\\/", "");
         line = line.replaceAll("[0-9\\W&&[^'^’]]", " ");
@@ -60,7 +67,10 @@ public class ENSE470Assignment1
             tree.addNode(items[i]);
         }
         tree.inOrderTraversal(tree.root);
-        String a = "a";
+        
+        // End timer
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: " + (endTime - startTime) + "mS");
     }
 
 }
