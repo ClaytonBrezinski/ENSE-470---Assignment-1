@@ -20,7 +20,7 @@ public class ENSE470Assignment1
     {
         // set this variable to TRUE if you want the program to be able to be invoked from the command line
         boolean userInputted = false;
-        String fileToUse = "test/test.txt";
+        String fileToUse = "hamlet.txt";
         
         Scanner input;
         Scanner userInput = new Scanner(System.in);
@@ -31,6 +31,9 @@ public class ENSE470Assignment1
         }   
             try
             {
+                final String workingDir = System.getProperty("user.dir");
+                System.out.println("Current working directory: " + workingDir);
+                
                 System.out.println(System.getProperty("user.dir"));
                 input = new Scanner(new File(fileToUse));
                 

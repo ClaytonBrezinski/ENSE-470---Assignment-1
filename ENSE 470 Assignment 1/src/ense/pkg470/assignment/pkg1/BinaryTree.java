@@ -21,12 +21,19 @@ public class BinaryTree
     public void addNode(String inWord)
     {
         TNode newNode = new TNode(inWord);
+        boolean addANode;
         if(root == null)
         {
             root = newNode;
+            addANode = true;
         }
-        // check if the word is currently in the tree already
-        boolean addANode = checkForDuplicateWord(inWord);
+        else
+        {
+            // having this in an if else block with root prevents a duplicate first node
+            // check if the word is currently in the tree already
+        addANode = checkForDuplicateWord(inWord);
+        }
+        
         if (addANode == true)
         {
             // check for duplicates will automatically increment the count variable.
