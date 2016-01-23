@@ -13,12 +13,24 @@ public class BinaryTree
 {
     TNode root;
     
+    public void BinaryTree()
+    {
+        this.root = null;
+    }
+        
     public void addNode(String inWord)
     {
         TNode newNode = new TNode(inWord);
         if(root == null)
         {
             root = newNode;
+        }
+        // check if the word is currently in the tree already
+        boolean addANode = checkForDuplicateWord(inWord);
+        if (addANode == true)
+        {
+            // check for duplicates will automatically increment the count variable.
+            return;
         }
         else
         {
@@ -56,14 +68,36 @@ public class BinaryTree
             }
         }
     }
-    
+    public boolean checkForDuplicateWord(String inWord)
+    {
+        TNode focusNode = root;
+        while (focusNode.word.compareToIgnoreCase(inWord) != 0)
+        {
+            if (inWord.compareToIgnoreCase(focusNode.word) < 0) // if true focus to the left side of the tree's children
+            {
+                focusNode = focusNode.left;
+            }
+            else
+            {
+                focusNode = focusNode.right;
+            }
+            
+            if (focusNode == null)
+            {
+                return false;
+            }
+        }
+        focusNode.addToCount();
+        return true; 
+    }
     public void inOrderTraversal(TNode focusNode)
     {
         if (focusNode != null)
         {
             //Go to left node
             inOrderTraversal(focusNode.left);
-            // WW Print
+            // print node's info
+            focusNode.printNodeInfo();
             //Go to the right node
             inOrderTraversal(focusNode.right);
         }

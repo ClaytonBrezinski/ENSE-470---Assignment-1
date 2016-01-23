@@ -20,11 +20,11 @@ public class TNode
         this.word = inWord;
         this.count = 1;
     }
-    private void addToCount(TNode node)
+    public void addToCount()
     {
-        node.count = node.count + 1;
+        this.count += 1;
     }
-    private void printNodeInfo()
+    public void printNodeInfo()
     {
         System.out.println(this.word + " = " + this.count); 
     }

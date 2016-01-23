@@ -46,11 +46,18 @@ public class ENSE470Assignment1
                 System.out.println("ERROR: File not found.");
                 return;
             }
-        // deal with the 
+        // deal with the special characters within the string
         line = line.replaceAll("\\/", "");
         line = line.replaceAll("[0-9\\W&&[^'^’]]", " ");
         String[] items = line.trim().split(" +");
-        line = "gg";
+        
+        BinaryTree tree = new BinaryTree();
+        for (int i = 0; i < items.length; i++)
+        {
+            tree.addNode(items[i]);
+        }
+        tree.inOrderTraversal(tree.root);
+        String a = "a";
     }
 
 }
