@@ -18,24 +18,39 @@ public class ENSE470Assignment1
      */
     public static void main(String[] args)
     {
-        // read in test.txt and places the words in a ___
+        // set this variable to TRUE if you want the program to be able to be invoked from the command line
+        boolean userInputted = false;
+        String fileToUse = "test/test.txt";
+        
         Scanner input;
-	try
-	{
-            input = new Scanner(new File("test.txt"));
-            
-            while (input.hasNextLine())
+        Scanner userInput = new Scanner(System.in);
+        String line = "";
+        if (userInputted == true)
+        {
+            fileToUse = userInput.next();
+        }   
+            try
             {
-                String line = input.nextLine();
-                // add the "line" to the binary tree
+                System.out.println(System.getProperty("user.dir"));
+                input = new Scanner(new File(fileToUse));
+                
+                while (input.hasNextLine())
+                {
+                    line += input.next()+ " ";
+                    // add the "line" to the binary tree
+                }
+                input.close();
             }
-            input.close();
-    	}
-    	catch (Exception e)
-	{
-            System.out.println("ERROR: File not found.");
-            return;
-    	}
+            catch (Exception e)
+            {
+                System.out.println("ERROR: File not found.");
+                return;
+            }
+        // deal with the 
+        line = line.replaceAll("\\/", "");
+        line = line.replaceAll("[0-9\\W&&[^'^’]]", " ");
+        String[] items = line.trim().split(" +");
+        line = "gg";
     }
-    
+
 }
