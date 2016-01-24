@@ -21,7 +21,7 @@ public class ENSE470Assignment1
         
         // set this variable to TRUE if you want the program to be able to be invoked from the command line
         boolean userInputted = false;
-        String fileToUse = "test/hamlet.txt";
+        String fileToUse = "test/test.txt";
         
         Scanner input;
         Scanner userInput = new Scanner(System.in);
@@ -61,12 +61,38 @@ public class ENSE470Assignment1
         line = line.replaceAll("[0-9\\W&&[^'^’]]", " ");
         String[] items = line.trim().split(" +");
         
-        BinaryTree tree = new BinaryTree();
+        TreeMap<String, Integer> tree = new TreeMap<String, Integer>();
+
+        String a = "";
         for (int i = 0; i < items.length; i++)
         {
-            tree.addNode(items[i]);
+            // if tree is already made and there already contains the same word, increment the counter
+            // otherwise add it to the tree
+            String check = items[i].toLowerCase();
+            if (tree.containsKey(check) == true)
+            {
+                int increment = tree.get(check).intValue();
+                tree.put(check, increment + 1);
+            }
+            else
+            {
+                tree.put(items[i].toLowerCase(), 1);
+            }
         }
-        tree.inOrderTraversal(tree.root);
+        //tree.inOrderTraversal(tree.root);
+        
+        Set set = tree.entrySet();
+        // Get an iterator
+        Iterator i = set.iterator();
+        // Display elements
+        while(i.hasNext()) 
+        {
+            Map.Entry me = (Map.Entry)i.next();
+            System.out.print(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+        
+        System.out.println();
         
         // End timer
         final long endTime = System.currentTimeMillis();
